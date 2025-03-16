@@ -140,7 +140,8 @@ class _GameBoardState extends State<GameBoard> {
 
           // landed pieces
           else if(gameBoard[row][col] != null) {
-            return Pixel(color: Colors.pink, child: '');
+            final Tetromino? tetrominoType = gameBoard[row][col];
+            return Pixel(color: tetrominoColors[tetrominoType], child: '');
           }
 
           // blank pixel
