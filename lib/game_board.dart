@@ -15,10 +15,11 @@ A non-empty space will have color to represent the landed pieces
 // create game board
 List<List<Tetromino?>> gameBoard = List.generate(
   colLength,
-  (i) => List.generate(
-    rowLength,
-    (j) => null,
-  ),
+      (i) =>
+      List.generate(
+        rowLength,
+            (j) => null,
+      ),
 );
 
 class GameBoard extends StatefulWidget {
@@ -35,6 +36,9 @@ class _GameBoardState extends State<GameBoard> {
   // current score
   int currentScore = 0;
 
+  // game over status
+  bool gameOver = false;
+
   @override
   void initState() {
     super.initState();
@@ -47,7 +51,7 @@ class _GameBoardState extends State<GameBoard> {
     currentPiece.initializePiece();
 
     // frame refresh rate
-    Duration frameRate = const Duration(milliseconds: 800);
+    Duration frameRate = const Duration(milliseconds: 500);
     gameLoop(frameRate);
   }
 
@@ -61,10 +65,61 @@ class _GameBoardState extends State<GameBoard> {
         // check  landing
         checkLanding();
 
+        // check if game is over or not
+        if (gameOver == true) {
+          timer.cancel();
+          showGameOverDialog();
+        }
+
         // move current piece down
         currentPiece.movePiece(Direction.down);
       });
     });
+  }
+
+  // game over message
+  void showGameOverDialog() {
+    showDialog(
+      context: context,
+      builder: (context) =>
+          AlertDialog(
+            title: Text('Game Over'),
+            content: Text('Your score is : $currentScore'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  // reset the game
+                  resetGame();
+                  Navigator.pop(context);
+                },
+                child: Text('Play Again'),
+              ),
+            ],
+          ),
+    );
+  }
+
+  // reset game
+  void resetGame() {
+    // clear the game board
+    gameBoard = List.generate(
+      colLength,
+          (i) =>
+          List.generate(
+            rowLength,
+                (j) => null,
+          ),
+    );
+
+    // new game
+    gameOver = false;
+    currentScore = 0;
+
+    // create new piece
+    createNewPiece();
+
+    // start game again
+    startGame();
   }
 
   // check for collision in a future position
@@ -120,13 +175,20 @@ class _GameBoardState extends State<GameBoard> {
 
     //  create a new piece with random type
     Tetromino randomType =
-        Tetromino.values[rand.nextInt(Tetromino.values.length)];
+    Tetromino.values[rand.nextInt(Tetromino.values.length)];
     currentPiece = Piece(type: randomType);
     currentPiece.initializePiece();
 
     /*
-    Since our game
+    Since our game over condition is if there is a piece at the top level,
+    you want to check if the game is over when you created a new piece,
+    instead of checking every frame, because new pieces are allowed to go through the top level
+    but if there is already a piece in the top level when the new piece is created,
+    then game is over
      */
+    if (isGameOver()) {
+      gameOver = true;
+    }
   }
 
   // move left
@@ -191,8 +253,8 @@ class _GameBoardState extends State<GameBoard> {
   // GAME OVER METHOD
   bool isGameOver() {
     // check if any columns in the top row are filled
-    for(int col=0; col<rowLength; col++) {
-      if(gameBoard[0][col] != null) {
+    for (int col = 0; col < rowLength; col++) {
+      if (gameBoard[0][col] != null) {
         return true;
       }
     }
@@ -220,19 +282,19 @@ class _GameBoardState extends State<GameBoard> {
                 int col = (index % rowLength);
                 // current piece
                 if (currentPiece.position.contains(index)) {
-                  return Pixel(color: currentPiece.color, child: index);
+                  return Pixel(color: currentPiece.color);
                 }
 
                 // landed pieces
                 else if (gameBoard[row][col] != null) {
                   final Tetromino? tetrominoType = gameBoard[row][col];
                   return Pixel(
-                      color: tetrominoColors[tetrominoType], child: '');
+                      color: tetrominoColors[tetrominoType]);
                 }
 
                 // blank pixel
                 else {
-                  return Pixel(color: Colors.grey[900], child: index);
+                  return Pixel(color: Colors.grey[900]);
                 }
               },
             ),
