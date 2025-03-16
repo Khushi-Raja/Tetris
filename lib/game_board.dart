@@ -30,7 +30,7 @@ class GameBoard extends StatefulWidget {
 
 class _GameBoardState extends State<GameBoard> {
   // current tetris piece
-  Piece currentPiece = Piece(type: Tetromino.T);
+  Piece currentPiece = Piece(type: Tetromino.L);
 
   @override
   void initState() {
@@ -122,24 +122,29 @@ class _GameBoardState extends State<GameBoard> {
   // move left
   void moveLeft() {
     // make sure the move is valid before we moving there
-    if(!checkCollision(Direction.left)) {
+    if (!checkCollision(Direction.left)) {
       setState(() {
         currentPiece.movePiece(Direction.left);
       });
     }
   }
+
   // move right
   void moveRight() {
-    if(!checkCollision(Direction.right)) {
+    if (!checkCollision(Direction.right)) {
       setState(() {
         currentPiece.movePiece(Direction.right);
       });
     }
   }
+
   // rotate
   void rotatePiece() {
-
+    setState(() {
+      currentPiece.rotatePiece();
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

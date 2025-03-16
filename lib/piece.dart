@@ -77,4 +77,102 @@ class Piece {
       default:
     }
   }
+
+  // rotate piece
+  int rotationState = 1;
+  void rotatePiece() {
+    // new position
+    List<int> newPosition = [];
+
+    // rotate the piece based on it's type
+    switch (type) {
+      case Tetromino.L:
+        switch (rotationState) {
+          case 0:
+            // get the new position
+            newPosition = [
+              position[1] - rowLength,
+              position[1],
+              position[1] + rowLength,
+              position[1] + rowLength + 1
+            ];
+            // update position
+            position = newPosition;
+            // update rotation state
+            rotationState = (rotationState + 1) % 4;
+            break;
+          case 1:
+            /*
+            o o o
+            o
+            */
+          // get the new position
+            newPosition = [
+              position[1] - 1,
+              position[1],
+              position[1] + 1,
+              position[1] + rowLength - 1
+            ];
+            // update position
+            position = newPosition;
+            // update rotation state
+            rotationState = (rotationState + 1) % 4;
+            break;
+          case 2:
+          /*
+            o o
+              o
+              o
+            */
+          // get the new position
+            newPosition = [
+              position[1] + rowLength,
+              position[1],
+              position[1] - rowLength,
+              position[1] - rowLength - 1
+            ];
+            // update position
+            position = newPosition;
+            // update rotation state
+            rotationState = (rotationState + 1) % 4;
+            break;
+          case 3:
+          /*
+                o
+            o o o
+            */
+          // get the new position
+            newPosition = [
+              position[1] - rowLength + 1,
+              position[1],
+              position[1] + 1,
+              position[1] - 1
+            ];
+            // update position
+            position = newPosition;
+            // update rotation state
+            rotationState = (rotationState + 1) % 4;
+            break;
+        }
+        break;
+      case Tetromino.J:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case Tetromino.I:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case Tetromino.O:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case Tetromino.S:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case Tetromino.Z:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case Tetromino.T:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+    }
+  }
 }
