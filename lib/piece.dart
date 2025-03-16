@@ -61,7 +61,6 @@ class Piece {
           position[i] += 1;
         }
         break;
-      default:
     }
   }
 
@@ -85,7 +84,7 @@ class Piece {
               position[1] + rowLength + 1
             ];
             // check that this new move is valid move before assigning it to the real position
-            if(piecePositionIsValid(newPosition)) {
+            if (piecePositionIsValid(newPosition)) {
               // update position
               position = newPosition;
               // update rotation state
@@ -105,7 +104,7 @@ class Piece {
               position[1] + rowLength - 1
             ];
             // check that this new move is valid move before assigning it to the real position
-            if(piecePositionIsValid(newPosition)) {
+            if (piecePositionIsValid(newPosition)) {
               // update position
               position = newPosition;
               // update rotation state
@@ -126,7 +125,7 @@ class Piece {
               position[1] - rowLength - 1
             ];
             // check that this new move is valid move before assigning it to the real position
-            if(piecePositionIsValid(newPosition)) {
+            if (piecePositionIsValid(newPosition)) {
               // update position
               position = newPosition;
               // update rotation state
@@ -146,33 +145,362 @@ class Piece {
               position[1] - 1
             ];
             // check that this new move is valid move before assigning it to the real position
-            if(piecePositionIsValid(newPosition)) {
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = 0;
+            }
+            break;
+        }
+        break;
+      case Tetromino.J:
+        switch (rotationState) {
+          case 0:
+            // get the new position
+            newPosition = [
+              position[1] - rowLength,
+              position[1],
+              position[1] + rowLength,
+              position[1] + rowLength - 1
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
               // update position
               position = newPosition;
               // update rotation state
               rotationState = (rotationState + 1) % 4;
             }
             break;
+          case 1:
+            // get the new position
+            newPosition = [
+              position[1] - rowLength - 1,
+              position[1],
+              position[1] - 1,
+              position[1] + 1
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 2:
+            // get the new position
+            newPosition = [
+              position[1] + rowLength,
+              position[1],
+              position[1] - rowLength,
+              position[1] - rowLength + 1
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 3:
+            // get the new position
+            newPosition = [
+              position[1] + 1,
+              position[1],
+              position[1] - 1,
+              position[1] + rowLength + 1
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = 0;
+            }
+            break;
         }
         break;
-      case Tetromino.J:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+
       case Tetromino.I:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        switch (rotationState) {
+          case 0:
+            // get the new position
+            newPosition = [
+              position[1] - 1,
+              position[1],
+              position[1] + 1,
+              position[1] + 2
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 1:
+            // get the new position
+            newPosition = [
+              position[1] - rowLength,
+              position[1],
+              position[1] + rowLength,
+              position[1] + 2 * rowLength
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 2:
+            // get the new position
+            newPosition = [
+              position[1] + 1,
+              position[1],
+              position[1] - 1,
+              position[1] - 2
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 3:
+            // get the new position
+            newPosition = [
+              position[1] + rowLength,
+              position[1],
+              position[1] - rowLength,
+              position[1] - 2 * rowLength
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = 0;
+            }
+            break;
+        }
+        break;
+
       case Tetromino.O:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        break;
+
       case Tetromino.S:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        switch (rotationState) {
+          case 0:
+            // get the new position
+            newPosition = [
+              position[1],
+              position[1] + 1,
+              position[1] + rowLength - 1,
+              position[1] + rowLength
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 1:
+            // get the new position
+            newPosition = [
+              position[0] - rowLength,
+              position[0],
+              position[0] + 1,
+              position[0] + rowLength + 1
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 2:
+            // get the new position
+            newPosition = [
+              position[1],
+              position[1] + 1,
+              position[1] + rowLength - 1,
+              position[1] + rowLength
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 3:
+            // get the new position
+            newPosition = [
+              position[0] - rowLength,
+              position[0],
+              position[0] + 1,
+              position[0] + rowLength + 1
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = 0;
+            }
+            break;
+        }
+        break;
+
       case Tetromino.Z:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        switch (rotationState) {
+          case 0:
+            // get the new position
+            newPosition = [
+              position[0] + rowLength - 2,
+              position[1],
+              position[2] + rowLength - 1,
+              position[3] + 1
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 1:
+            // get the new position
+            newPosition = [
+              position[0] - rowLength + 2,
+              position[1],
+              position[2] - rowLength + 1,
+              position[3] - 1
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 2:
+            // get the new position
+            newPosition = [
+              position[0] + rowLength - 2,
+              position[1],
+              position[2] + rowLength - 1,
+              position[3] + 1
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 3:
+            // get the new position
+            newPosition = [
+              position[0] - rowLength + 2,
+              position[1],
+              position[2] - rowLength + 1,
+              position[3] - 1
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = 0;
+            }
+            break;
+        }
+        break;
+
       case Tetromino.T:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        switch (rotationState) {
+          case 0:
+            // get the new position
+            newPosition = [
+              position[2] - rowLength,
+              position[2],
+              position[2] + 1,
+              position[2] + rowLength
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 1:
+            // get the new position
+            newPosition = [
+              position[1] - 1,
+              position[1],
+              position[1] + 1,
+              position[1] + rowLength
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 2:
+            // get the new position
+            newPosition = [
+              position[1] - rowLength,
+              position[1] - 1,
+              position[1],
+              position[1] + rowLength
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+          case 3:
+            // get the new position
+            newPosition = [
+              position[2] - rowLength,
+              position[2] - 1,
+              position[2],
+              position[2] + 1
+            ];
+            // check that this new move is valid move before assigning it to the real position
+            if (piecePositionIsValid(newPosition)) {
+              // update position
+              position = newPosition;
+              // update rotation state
+              rotationState = 0;
+            }
+            break;
+        }
+        break;
     }
   }
 
@@ -194,13 +522,13 @@ class Piece {
   }
 
   // check if piece is valid position
-bool piecePositionIsValid(List<int> piecePosition) {
+  bool piecePositionIsValid(List<int> piecePosition) {
     bool firstColOccupied = false;
     bool lastColOccupied = false;
 
-    for(int pos in piecePosition) {
+    for (int pos in piecePosition) {
       // return false if any position is already taken
-      if(!positionIsValid(pos)) {
+      if (!positionIsValid(pos)) {
         return false;
       }
 
@@ -208,14 +536,14 @@ bool piecePositionIsValid(List<int> piecePosition) {
       int col = pos % rowLength;
 
       // check if the first or last column is occupied
-      if(col == 0) {
+      if (col == 0) {
         firstColOccupied = true;
       }
-      if(col == rowLength - 1) {
+      if (col == rowLength - 1) {
         lastColOccupied = true;
       }
     }
     // if there is a piece in the first col and last col, it is going through the wall
-  return !(firstColOccupied && lastColOccupied);
-}
+    return !(firstColOccupied && lastColOccupied);
+  }
 }

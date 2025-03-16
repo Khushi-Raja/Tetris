@@ -30,7 +30,7 @@ class GameBoard extends StatefulWidget {
 
 class _GameBoardState extends State<GameBoard> {
   // current tetris piece
-  Piece currentPiece = Piece(type: Tetromino.L);
+  Piece currentPiece = Piece(type: Tetromino.J);
 
   @override
   void initState() {
