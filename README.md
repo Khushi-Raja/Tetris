@@ -8,4 +8,4 @@
 - 🏆 **Line Clearing** – Score progression when lines are cleared.  
 - ❌ **Game Over Logic** – Detects when the grid is full.  
 
-https://github.com/user-attachments/assets/969f7a50-c315-4d42-ba31-0d71aff254ef
+https://github.com/user-attachments/assets/d5c9d0b5-621c-440b-b03a-c7d24fcb8729
