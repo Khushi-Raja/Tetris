@@ -1,6 +1,5 @@
 # tetris_game
 
-## Features  
 - 🟢 **2x2 Grid System** – Ensures accurate Tetromino placement.  
 - 🟡 **Tetromino Class** – Different shapes and colors for game pieces.  
 - 🔄 **Game Loop** – Manages piece movement and rendering.  
